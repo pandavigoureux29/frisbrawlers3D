@@ -20,8 +20,8 @@ public class Frisbee : MonoBehaviour {
 
     public Area currentArea;
 
-    public Vector2 direction;
-    Vector2 baseDirection;
+    public Vector3 direction;
+    Vector3 baseDirection;
     
     //CURVING
     bool Curved = false;
@@ -82,8 +82,8 @@ public class Frisbee : MonoBehaviour {
         }
         else
         {
-            Vector2 curvedV = ApplyCurve(direction);
-            Vector2 v = curvedV * currentSpeed * Time.deltaTime;
+            Vector3 curvedV = ApplyCurve(direction);
+            Vector3 v = curvedV * currentSpeed * Time.deltaTime;
             transform.Translate(v);
         }
         var pos = transform.position;
@@ -101,7 +101,7 @@ public class Frisbee : MonoBehaviour {
         return true;
     }
 
-    public void Launch(Vector2 _direction, bool curved, bool fastLaunch)
+    public void Launch(Vector3 _direction, bool curved, bool fastLaunch)
     {
         lastPlayer = player;
         player = null;
@@ -154,7 +154,7 @@ public class Frisbee : MonoBehaviour {
         }
     }
 
-    public virtual void Bounce(Vector2 bouncingScale)
+    public virtual void Bounce(Vector3 bouncingScale)
     {
         direction.Scale( bouncingScale );
         currentSpeed += wallSpeedStep;
@@ -167,19 +167,19 @@ public class Frisbee : MonoBehaviour {
     public void KickOff(bool right)
     {
         currentSpeed = baseSpeed * 0.5f;
-        Vector2 moveVector = new Vector2(right ? 0.5f : -0.5f, 0);
+        Vector3 moveVector = new Vector3(right ? 0.5f : -0.5f, 0, 0);
         Launch(moveVector,false,false);
     }
 
     public void ResetFrisbee()
     {
-        direction = Vector2.zero;
+        direction = Vector3.zero;
         Curved = false;
     }
 
     #region Curve
 
-    public Vector2 Rotate(Vector2 v, float degrees)
+    public Vector3 Rotate(Vector3 v, float degrees)
     {
         float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
         float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
@@ -191,7 +191,7 @@ public class Frisbee : MonoBehaviour {
         return v;
     }
 
-    Vector2 ApplyCurve(Vector2 direction)
+    Vector3 ApplyCurve(Vector3 direction)
     {
         if (!Curved)
             return direction;

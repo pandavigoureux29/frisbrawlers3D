@@ -54,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1758323789811188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.26, y: 0.52676, z: 2.9765713}
+  m_LocalScale: {x: 2.9, y: 0.52676, z: 2.9765713}
   m_Children: []
   m_Father: {fileID: 4944008103572568}
   m_RootOrder: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 4753826503375632}
   lastPlayer: {fileID: 0}
   currentArea: {fileID: 0}
-  direction: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
   curveAngleDropRate: 1.3
   CurrentState: 0
 --- !u!135 &135784003229385724

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour {
 
-    [SerializeField] Vector2 BouncingVector;
+    [SerializeField] Vector3 BouncingVector;
 
 	// Use this for initialization
 	void Start () {

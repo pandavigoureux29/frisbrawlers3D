@@ -119,16 +119,10 @@ public class Player : MonoBehaviour {
     public void OnLaunch(float x, float z)
     {
         Launch(x, z);
-        CmdLaunch(x, z);
     }
 
 
-    public void CmdLaunch(float x, float z)
-    {
-        Launch(x, z);
-    }
-
-    void Launch(float x, float y)
+    void Launch(float x, float z)
     {
         if (frisbee != null)
         {
@@ -136,7 +130,7 @@ public class Player : MonoBehaviour {
             var launchdelay = (System.DateTime.UtcNow - catchTime).TotalSeconds;
             bool fastLaunch = launchdelay <= FastLaunchDelayMax;
 
-            var launchVector = new Vector2(x * reverseMult, y * reverseMult);
+            var launchVector = new Vector3(x * reverseMult, 0, z * reverseMult);
             frisbee.Launch(launchVector, CurveActive, fastLaunch);
             frisbee = null;
             CurveActive = false;

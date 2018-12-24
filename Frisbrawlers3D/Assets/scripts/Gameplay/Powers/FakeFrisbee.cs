@@ -21,7 +21,7 @@ public class FakeFrisbee : Frisbee {
         return false;
     }
 
-    public override void Bounce(Vector2 bouncingScale)
+    public override void Bounce(Vector3 bouncingScale)
     {
         base.Bounce(bouncingScale);
         bounces++;

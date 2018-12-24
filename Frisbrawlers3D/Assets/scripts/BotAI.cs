@@ -139,7 +139,7 @@ public class BotAI : MonoBehaviour {
         State = BotState.MOVE_FOR_FRISBEE;
 
         frisbee = GetFrisbee();
-        targetPosition = Utils.GetVector2(frisbee.transform.position) + (frisbee.direction * 5.0f);
+        targetPosition = frisbee.transform.position + (frisbee.direction * 5.0f);
     }
 
     void Move()
