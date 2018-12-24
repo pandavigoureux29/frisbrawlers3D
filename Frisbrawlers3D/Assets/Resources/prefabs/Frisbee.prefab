@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4944008103572568}
   - component: {fileID: 114142648724135822}
   - component: {fileID: 54123084487242470}
+  - component: {fileID: 135784003229385724}
   m_Layer: 10
   m_Name: Frisbee
   m_TagString: Untagged
@@ -38,8 +39,7 @@ GameObject:
   - component: {fileID: 4753826503375632}
   - component: {fileID: 33482999613231220}
   - component: {fileID: 23219245665925572}
-  - component: {fileID: 135056973728102708}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &114142648724135822
 MonoBehaviour:
@@ -152,15 +152,15 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   curveAngleDropRate: 1.3
   CurrentState: 0
---- !u!135 &135056973728102708
+--- !u!135 &135784003229385724
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1758323789811188}
+  m_GameObject: {fileID: 1651450177685806}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.04
   m_Center: {x: 0, y: 0, z: 0}

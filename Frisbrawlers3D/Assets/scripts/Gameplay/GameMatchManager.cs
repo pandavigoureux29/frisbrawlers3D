@@ -33,6 +33,7 @@ public class GameMatchManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        KickOff();
 	}
 
     public void KickOff()

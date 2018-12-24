@@ -62,18 +62,23 @@ public class Frisbee : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (CurrentState == State.LAUNCHED)
-        {
-            float rotationSpeed = 220 * (Curved ? 1.5f : 1f);
-            spriteTransform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-        }
     }
 
     void LateUpdate()
     {
+        if (CurrentState == State.LAUNCHED)
+        {
+            float rotationSpeed = 220 * (Curved ? 1.5f : 1f);
+            spriteTransform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+
+        }
+
         if (player != null)
         {
-            transform.position = player.transform.position;
+            transform.position = player.transform.position;            
         }
         else
         {
@@ -81,6 +86,9 @@ public class Frisbee : MonoBehaviour {
             Vector2 v = curvedV * currentSpeed * Time.deltaTime;
             transform.Translate(v);
         }
+        var pos = transform.position;
+        pos.y = 0;
+        transform.position = pos;
     }
 
     public virtual bool SetPlayer(Player attachedPlayer)
@@ -134,6 +142,11 @@ public class Frisbee : MonoBehaviour {
         {
             currentArea = other.gameObject.GetComponent<Area>();
             OnEnterArea?.Invoke(this, new FrisbeeEventArgs(lastPlayer, currentArea));
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Player player = other.gameObject.GetComponent<Player>();
+            player.OnCatchFrisbee(this);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Net"))
         {

@@ -65,9 +65,9 @@ public class Player : MonoBehaviour {
 	void Update () {
 
         var rigidbody = GetComponent<Rigidbody>();
-        //rigidbody.velocity = Vector3.zero;
+        rigidbody.velocity = Vector3.zero;
 
-		Debug.DrawLine (transform.position, transform.position + new Vector3 (m_forwardVector.x, m_forwardVector.y, 0) * 3, Color.red, 0.01f, true);
+		//Debug.DrawLine (transform.position, transform.position + new Vector3 (m_forwardVector.x, m_forwardVector.y, 0) * 3, Color.red, 0.01f, true);
 	}
     
 	public void SetTeam(int _teamId){
@@ -110,8 +110,8 @@ public class Player : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Frisbee"))
         {
-            Frisbee collidingFrisbee = other.gameObject.GetComponent<Frisbee>();
-            OnCatchFrisbee(collidingFrisbee);
+            /*Frisbee collidingFrisbee = other.gameObject.GetComponent<Frisbee>();
+            OnCatchFrisbee(collidingFrisbee);*/
         }
     }
 
@@ -174,11 +174,11 @@ public class Player : MonoBehaviour {
         Move(moveVector.x, moveVector.y);
     }
 
-    void Move(float x, float y)
+    void Move(float x, float z)
     {
-        if ( (x != 0 || y != 0) && CurrentState == State.NONE)
+        if ( (x != 0 || z != 0) && CurrentState == State.NONE)
         {
-            Vector2 moveVector = new Vector2(x, y).normalized;
+            Vector3 moveVector = new Vector3(x, 0, z).normalized;
             moveVector *= Speed * reverseMult;
             if (frisbee == null)
             {
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void AddSpeed(Vector2 moveVector)
+    void AddSpeed(Vector3 moveVector)
     {
         var rigidbody = GetComponent<Rigidbody>();
         rigidbody.AddForce(moveVector);
