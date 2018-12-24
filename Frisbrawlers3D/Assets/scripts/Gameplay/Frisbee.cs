@@ -148,9 +148,10 @@ public class Frisbee : MonoBehaviour {
             Player player = other.gameObject.GetComponent<Player>();
             player.OnCatchFrisbee(this);
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Net"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-
+            Wall wall = other.gameObject.GetComponent<Wall>();
+            Bounce(wall.BouncingVector);
         }
     }
 
