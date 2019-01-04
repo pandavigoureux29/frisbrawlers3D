@@ -132,7 +132,7 @@ public class BotAI : MonoBehaviour {
 
     #region MOVING
 
-    Vector2 targetPosition;
+    Vector3 targetPosition;
 
     void InitiateMoveToFrisbee()
     {
@@ -144,17 +144,17 @@ public class BotAI : MonoBehaviour {
 
     void Move()
     {
-        var moveVector = targetPosition - new Vector2(transform.position.x, transform.position.y);
+        var moveVector = targetPosition - transform.position;
         player.OnMove(moveVector);
         //Debug.Log(moveVector);
     }
 
     void FollowFrisbee()
     {
-        var deltaY = frisbee.transform.position.y - transform.position.y;
-        if (Mathf.Abs(deltaY) > 0.6f)
+        var deltaZ = frisbee.transform.position.y - transform.position.y;
+        if (Mathf.Abs(deltaZ) > 0.6f)
         {
-            var moveVector = new Vector2(0, deltaY).normalized;
+            var moveVector = new Vector3(0,0, deltaZ).normalized;
             player.OnMove(moveVector);
         }
     }

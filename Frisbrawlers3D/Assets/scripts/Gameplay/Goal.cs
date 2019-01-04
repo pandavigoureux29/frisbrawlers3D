@@ -20,12 +20,12 @@ public class Goal : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D _collider){
-		if(_collider.gameObject.layer == LayerMask.NameToLayer ("Frisbee")) {
+		/*if(_collider.gameObject.layer == LayerMask.NameToLayer ("Frisbee")) {
             var fake = _collider.gameObject.GetComponent<FakeFrisbee>();
             if(fake == null)
             {
                 m_matchManager.Goal(teamA, Points);
             }
-		}
+		}*/
 	}
 }

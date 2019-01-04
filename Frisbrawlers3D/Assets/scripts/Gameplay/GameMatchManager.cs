@@ -24,13 +24,15 @@ public class GameMatchManager : MonoBehaviour {
 
     private void Awake()
     {
-        //spawn ball on the server
+        //spawn frisbee on the server
         var go = Instantiate(m_ballPrefab);
         m_frisbee = go.transform;
+        m_frisbee.GetComponent<Frisbee>().OnGoal += GameMatchManager_OnGoal;
+
         ResetFrisbee();
         CreateTeams();
     }
-
+    
     // Use this for initialization
     void Start () {
         KickOff();
@@ -45,9 +47,9 @@ public class GameMatchManager : MonoBehaviour {
     }
 
 
-	#region TEAMS
+    #region TEAMS
 
-	void CreateTeams(){
+    void CreateTeams(){
 		m_teams.Add (new Team (0, m_teamASpawnPoints));
 		m_teams.Add (new Team (1, m_teamBSpawnPoints));
 	}
@@ -61,9 +63,14 @@ public class GameMatchManager : MonoBehaviour {
 	}
 
 
-	#endregion
+    #endregion
 
-	public void Goal(bool teamA, int points){
+    private void GameMatchManager_OnGoal(object sender, Frisbee.FrisbeeGoalEventArgs e)
+    {
+        Goal(e.Goal.teamA, e.Goal.Points);
+    }
+
+    public void Goal(bool teamA, int points){
 		var team = teamA ? m_teams [1] : m_teams [0];
         team.Score+= points;
 

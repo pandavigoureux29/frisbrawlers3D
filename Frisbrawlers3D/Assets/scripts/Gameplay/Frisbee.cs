@@ -45,10 +45,21 @@ public class Frisbee : MonoBehaviour {
         }
     }
 
+    public class FrisbeeGoalEventArgs : EventArgs
+    {
+        public Goal Goal { get; set; }
+
+        public FrisbeeGoalEventArgs(Goal goal)
+        {
+            Goal = goal;
+        }
+    }
+
     public event EventHandler<EventArgs> OnWallBounce;
     public event EventHandler<FrisbeeEventArgs> OnCaught;
     public event EventHandler<FrisbeeEventArgs> OnLaunched;
     public event EventHandler<FrisbeeEventArgs> OnEnterArea;
+    public event EventHandler<FrisbeeGoalEventArgs> OnGoal;
 
     public bool IsFree
     {
@@ -152,6 +163,15 @@ public class Frisbee : MonoBehaviour {
         {
             Wall wall = other.gameObject.GetComponent<Wall>();
             Bounce(wall.BouncingVector);
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
+        {
+            var fake = gameObject.GetComponent<FakeFrisbee>();
+            if (fake == null)
+            {
+                var goal = other.gameObject.GetComponent<Goal>();
+                OnGoal?.Invoke(this, new FrisbeeGoalEventArgs(goal));
+            }
         }
     }
 
