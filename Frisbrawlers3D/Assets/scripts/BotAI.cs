@@ -111,10 +111,7 @@ public class BotAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        var rigidbody = GetComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.zero;
-
+        
         switch (State)
         {
             case BotState.MOVE_FOR_FRISBEE:

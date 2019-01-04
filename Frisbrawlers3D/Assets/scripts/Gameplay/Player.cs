@@ -44,14 +44,6 @@ public class Player : MonoBehaviour {
     void Start () {
 		m_forwardVector = forwardVectorBase;
         var sprite = transform.GetComponentInChildren<SpriteRenderer>();
-        /*if (isLocalPlayer)
-        {
-            sprite.color = Color.blue;
-        }
-        else
-        {
-            sprite.color = Color.red;
-        }*/
 
 		m_camera = FindObjectOfType<PlayerCamera> ();
 		if (m_camera != null)
@@ -108,11 +100,11 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Frisbee"))
+        /*if (other.gameObject.layer == LayerMask.NameToLayer("Frisbee"))
         {
-            /*Frisbee collidingFrisbee = other.gameObject.GetComponent<Frisbee>();
-            OnCatchFrisbee(collidingFrisbee);*/
-        }
+            Frisbee collidingFrisbee = other.gameObject.GetComponent<Frisbee>();
+            OnCatchFrisbee(collidingFrisbee);
+        }*/
     }
 
 
@@ -183,7 +175,6 @@ public class Player : MonoBehaviour {
             if (frisbee == null)
             {
                 AddSpeed(moveVector);
-                //controller.Move(moveVector);
                 lastDirection = moveVector;
             }
             facingDirection = moveVector;
@@ -192,9 +183,11 @@ public class Player : MonoBehaviour {
 
     void AddSpeed(Vector3 moveVector)
     {
-        var rigidbody = GetComponent<Rigidbody>();
+        controller.Move(moveVector);
+
+        /*var rigidbody = GetComponent<Rigidbody>();
         rigidbody.AddForce(moveVector);
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, m_maxSpeed);
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, m_maxSpeed);*/
     }
 
     #endregion
