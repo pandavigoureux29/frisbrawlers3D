@@ -16,7 +16,7 @@ public class BotAI : MonoBehaviour {
 
     List<Goal> opponentGoals;
     Area myArea;
-    Vector2 shootDirection;
+    Vector3 shootDirection;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +33,7 @@ public class BotAI : MonoBehaviour {
         player.IsReversed = false;
 
         opponentGoals = FindObjectsOfType<Goal>().Where(x => x.teamA == (player.TeamId != 0)).ToList();
-        shootDirection = frisbee.transform.position.x < transform.position.x ? new Vector2(-1, 0) : new Vector2(1, 0);
+        shootDirection = frisbee.transform.position.x < transform.position.x ? new Vector3(-1, 0, 0) : new Vector3(1,0, 0);
         myArea = FindObjectsOfType<Area>().Where(x => x.TeamId == player.TeamId).FirstOrDefault();
 	}
 
@@ -112,7 +112,7 @@ public class BotAI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        var rigidbody = GetComponent<Rigidbody2D>();
+        var rigidbody = GetComponent<Rigidbody>();
         rigidbody.velocity = Vector3.zero;
 
         switch (State)
@@ -151,7 +151,7 @@ public class BotAI : MonoBehaviour {
 
     void FollowFrisbee()
     {
-        var deltaZ = frisbee.transform.position.y - transform.position.y;
+        var deltaZ = frisbee.transform.position.z - transform.position.z;
         if (Mathf.Abs(deltaZ) > 0.6f)
         {
             var moveVector = new Vector3(0,0, deltaZ).normalized;

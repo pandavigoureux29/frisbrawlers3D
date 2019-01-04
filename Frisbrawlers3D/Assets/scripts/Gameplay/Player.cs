@@ -162,6 +162,12 @@ public class Player : MonoBehaviour {
 
     #region MOVEMENT
 
+    public void OnMove(Vector3 moveVector)
+    {
+        moveVector = moveVector.normalized;
+        Move(moveVector.x, moveVector.z);
+    }
+
     public void OnMove(Vector2 moveVector)
     {
         moveVector = moveVector.normalized;
