@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 161081695}
   - component: {fileID: 161081696}
   - component: {fileID: 161081697}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: LeftSideArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 547348070}
   - component: {fileID: 547348072}
   - component: {fileID: 547348071}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: RightsideArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,6 +1674,7 @@ MonoBehaviour:
   AndroidInputObject: {fileID: 0}
   joystick: {fileID: 1546044273}
   LaunchPad: {fileID: 221955925}
+  Player: {fileID: 1113186824}
 --- !u!4 &692511828
 Transform:
   m_ObjectHideFlags: 0
@@ -2211,6 +2212,12 @@ Transform:
   m_Father: {fileID: 620255333}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1113186824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114726555239863880, guid: 10dfed1d9c86eff4f84c1dc1fb6a8cb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1418977936}
+  m_Script: {fileID: 11500000, guid: fc2239debb63e4e4cbad11b0d77f8b27, type: 3}
 --- !u!1 &1157941949
 GameObject:
   m_ObjectHideFlags: 0

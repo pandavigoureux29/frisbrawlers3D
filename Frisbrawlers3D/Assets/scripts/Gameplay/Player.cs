@@ -48,9 +48,6 @@ public class Player : MonoBehaviour {
 		m_camera = FindObjectOfType<PlayerCamera> ();
 		if (m_camera != null)
 			m_camera.Player = this.transform;
-		var input = FindObjectOfType<PlayerInputManager> ();
-		if (input != null)
-			input.SetPlayer (this);
 	}
 
 	// Update is called once per frame

@@ -9,8 +9,7 @@ public class PlayerInputManager : MonoBehaviour {
     public Joystick joystick;
     public Joystick LaunchPad;
 
-	Player m_player;
-    public Player Player { get { return m_player; } }
+    public Player Player;
     public event EventHandler<EventArgs> OnPlayerSet;
 
 
@@ -25,16 +24,16 @@ public class PlayerInputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_player != null)
+		if (Player != null)
         {
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
             Vector3 moveVector = new Vector3(x, 0, z);
-            m_player.OnMove(new Vector2(x,z));
+            Player.OnMove(new Vector2(x,z));
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                m_player.OnLaunch(x, z);
+                Player.OnLaunch(x, z);
             }
 
             if (Input.GetKeyDown(KeyCode.P))
@@ -61,30 +60,29 @@ public class PlayerInputManager : MonoBehaviour {
         {
             //transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
             //transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
-            m_player.OnMove(moveVector);
+            Player.OnMove(moveVector);
         }
 
 
         if (launchVector.magnitude > 0.8f)
         {
-            m_player.OnLaunch(launchVector.x, launchVector.y);
+            Player.OnLaunch(launchVector.x, launchVector.y);
         }
     }
 
 	public void SetPlayer(Player _player){
-		m_player = _player;
+        Player = _player;
         OnPlayerSet?.Invoke(this,null);
-
     }
 
     public void OnPowerActivate()
     {
-        m_player.OnPowerActivate();
+        Player.OnPowerActivate();
     }
 
     public void OnToggleCurve()
     {
-        m_player.OnToggleCurve();
+        Player.OnToggleCurve();
     }
     
 	#region PLAYER_ACTION
