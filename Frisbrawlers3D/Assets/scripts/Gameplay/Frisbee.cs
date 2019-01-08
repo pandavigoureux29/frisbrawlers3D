@@ -164,6 +164,10 @@ public class Frisbee : MonoBehaviour {
             Wall wall = other.gameObject.GetComponent<Wall>();
             Bounce(wall.BouncingVector);
         }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Deadzone"))
+        {
+            FindObjectOfType<GameMatchManager>().Goal(false, 0);
+        }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
         {
             var fake = gameObject.GetComponent<FakeFrisbee>();
@@ -202,14 +206,11 @@ public class Frisbee : MonoBehaviour {
 
     public Vector3 Rotate(Vector3 v, float degrees)
     {
-        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+        Quaternion rotation = Quaternion.Euler(0, degrees, 0);
+        Vector3 myVector = Vector3.one;
+        Vector3 rotateVector = rotation * myVector;
 
-        float tx = v.x;
-        float ty = v.y;
-        v.x = (cos * tx) - (sin * ty);
-        v.y = (sin * tx) + (cos * ty);
-        return v;
+        return rotateVector;
     }
 
     Vector3 ApplyCurve(Vector3 direction)
